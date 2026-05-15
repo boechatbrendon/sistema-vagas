@@ -124,7 +124,11 @@
                 
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button type="button" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50">
+                    <button 
+                        id="mobile-menu-button"
+                        type="button" 
+                        class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -133,6 +137,33 @@
             </div>
         </div>
     </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-700/50 bg-slate-900/95 backdrop-blur-xl">
+        
+        <div class="px-4 py-4 space-y-2">
+
+            <a href="/" class="block px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/50">
+                Início
+            </a>
+
+            <a href="/vagas" class="block px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/50">
+                Vagas
+            </a>
+
+            <a href="/unidades" class="block px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/50">
+                Unidades
+            </a>
+
+            <a href="/sortear" class="block px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/50">
+                Sortear
+            </a>
+
+            <a href="/resultados" class="block px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/50">
+                Resultados
+            </a>
+
+        </div>
+    </div>
     
     <!-- Conteúdo Principal -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -159,6 +190,14 @@
             </div>
         </div>
     </footer>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
     
     {% block extra_scripts %}{% endblock %}
 </body>
