@@ -28,6 +28,7 @@ def realizar_sorteio():
     aps_pcd = [ap for ap in apartamentos if ap.get("pcd") is True]
     vagas_pcd = [v for v in vagas if v.get("PCD") is True]
     random.shuffle(vagas_pcd)
+    random.shuffle(aps_pcd)
     
     sorteio_pcd = []
     for ap in aps_pcd:
