@@ -92,17 +92,6 @@
         </svg>
         Recolher Todas
     </button>
-    
-    <!-- Botão para alternar visualização -->
-    <button onclick="alternarVisualizacao()" id="btn-visualizacao" class="inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-indigo-500/20 hover:scale-105 active:scale-95 transition-all">
-        <svg id="icon-lista" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-        </svg>
-        <svg id="icon-grid" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 hidden">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-        </svg>
-        <span id="texto-visualizacao">Ver em Cards</span>
-    </button>
 </div>
 
 <!-- Lista de Resultados com Abas Colapsáveis -->
@@ -129,12 +118,13 @@
             </svg>
         </button>
         
-        <!-- Conteúdo Colapsável - Visualização em Lista -->
+        <!-- Conteúdo Colapsável -->
         <div id="categoria-pcd" class="border-t border-amber-500/20">
-            <div id="lista-pcd" class="p-6 space-y-3">
+            <div class="p-6 space-y-3">
                 {% for item in resultado.sorteio_pcd|sort(attribute='apartamento') %}
                 <div class="glass border border-amber-500/20 rounded-lg p-4 hover:border-amber-500/40 transition-all hover:shadow-lg hover:shadow-amber-500/10">
                     <div class="flex items-center justify-between">
+                        <!-- Info Principal -->
                         <div class="flex items-center space-x-4 flex-1">
                             <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-amber-400">
@@ -162,33 +152,6 @@
                 </div>
                 {% endfor %}
             </div>
-            
-            <!-- Conteúdo em Grid (Cards) -->
-            <div id="grid-pcd" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
-                {% for item in resultado.sorteio_pcd|sort(attribute='apartamento') %}
-                <div class="glass border border-amber-500/30 rounded-xl p-4 hover:border-amber-500/50 transition-colors">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-amber-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-white">Apto {{ item.apartamento }}</span>
-                        </div>
-                        <span class="px-2 py-1 bg-amber-500/10 border border-amber-500/20 rounded text-xs font-medium text-amber-400">PCD</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm pt-3 border-t border-slate-700/50">
-                        <span class="text-slate-400">Vaga:</span>
-                        <span class="font-bold text-amber-400">{{ item.vaga.vaga }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm mt-2">
-                        <span class="text-slate-400">Local:</span>
-                        <span class="text-slate-300">{{ item.vaga.loca }}</span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
         </div>
     </div>
     {% endif %}
@@ -196,6 +159,7 @@
     <!-- Categoria 2: Vagas Descobertas -->
     {% if resultado.sorteio_descobertas %}
     <div class="glass border border-blue-500/30 rounded-xl overflow-hidden">
+        <!-- Header da Categoria -->
         <button onclick="toggleCategoria('descobertas')" class="w-full p-5 flex items-center justify-between hover:bg-blue-500/5 transition-colors">
             <div class="flex items-center space-x-4">
                 <div class="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center">
@@ -213,11 +177,13 @@
             </svg>
         </button>
         
+        <!-- Conteúdo Colapsável -->
         <div id="categoria-descobertas" class="border-t border-blue-500/20">
-            <div id="lista-descobertas" class="p-6 space-y-3">
+            <div class="p-6 space-y-3">
                 {% for item in resultado.sorteio_descobertas|sort(attribute='apartamento') %}
                 <div class="glass border border-blue-500/20 rounded-lg p-4 hover:border-blue-500/40 transition-all hover:shadow-lg hover:shadow-blue-500/10">
                     <div class="flex items-center justify-between">
+                        <!-- Info Principal -->
                         <div class="flex items-center space-x-4 flex-1">
                             <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400">
@@ -245,32 +211,6 @@
                 </div>
                 {% endfor %}
             </div>
-            
-            <div id="grid-descobertas" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
-                {% for item in resultado.sorteio_descobertas|sort(attribute='apartamento') %}
-                <div class="glass border border-blue-500/30 rounded-xl p-4 hover:border-blue-500/50 transition-colors">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-blue-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-white">Apto {{ item.apartamento }}</span>
-                        </div>
-                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded text-xs font-medium text-blue-400">Descoberta</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm pt-3 border-t border-slate-700/50">
-                        <span class="text-slate-400">Vaga:</span>
-                        <span class="font-bold text-blue-400">{{ item.vaga.vaga }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm mt-2">
-                        <span class="text-slate-400">Local:</span>
-                        <span class="text-slate-300">{{ item.vaga.loca }}</span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
         </div>
     </div>
     {% endif %}
@@ -279,6 +219,7 @@
     {% set vagas_cobertas = resultado.sorteio_bloco_a + resultado.sorteio_bloco_b + resultado.sorteio_ampla %}
     {% if vagas_cobertas %}
     <div class="glass border border-purple-500/30 rounded-xl overflow-hidden">
+        <!-- Header da Categoria -->
         <button onclick="toggleCategoria('cobertas')" class="w-full p-5 flex items-center justify-between hover:bg-purple-500/5 transition-colors">
             <div class="flex items-center space-x-4">
                 <div class="w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-lg flex items-center justify-center">
@@ -296,11 +237,13 @@
             </svg>
         </button>
         
+        <!-- Conteúdo Colapsável -->
         <div id="categoria-cobertas" class="border-t border-purple-500/20">
-            <div id="lista-cobertas" class="p-6 space-y-3">
+            <div class="p-6 space-y-3">
                 {% for item in vagas_cobertas|sort(attribute='apartamento') %}
                 <div class="glass border border-purple-500/20 rounded-lg p-4 hover:border-purple-500/40 transition-all hover:shadow-lg hover:shadow-purple-500/10">
                     <div class="flex items-center justify-between">
+                        <!-- Info Principal -->
                         <div class="flex items-center space-x-4 flex-1">
                             <div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-purple-400">
@@ -328,36 +271,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            
-            <div id="grid-cobertas" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
-                {% for item in vagas_cobertas|sort(attribute='apartamento') %}
-                <div class="glass border border-purple-500/30 rounded-xl p-4 hover:border-purple-500/50 transition-colors">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-purple-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-white">Apto {{ item.apartamento }}</span>
-                        </div>
-                        <span class="px-2 py-1 bg-purple-500/10 border border-purple-500/20 rounded text-xs font-medium text-purple-400">Bloco {{ item.bloco }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm pt-3 border-t border-slate-700/50">
-                        <span class="text-slate-400">Vaga:</span>
-                        <span class="font-bold text-purple-400">{{ item.vaga.vaga }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm mt-2">
-                        <span class="text-slate-400">Local:</span>
-                        <span class="text-slate-300">{{ item.vaga.loca }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm mt-2">
-                        <span class="text-slate-400">Coberta:</span>
-                        <span class="text-xs text-slate-300">{{ 'Sim' if item.vaga.coberta else 'Não' }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -393,45 +306,6 @@
 <script>
 // Dados do resultado para exportação
 const resultadoCompleto = {{ resultado|tojson|safe if not sem_sorteio else '{}' }};
-
-// Variável para controlar o modo de visualização
-let modoLista = true;
-
-// Função para alternar visualização
-function alternarVisualizacao() {
-    modoLista = !modoLista;
-    const categorias = ['pcd', 'descobertas', 'cobertas'];
-    
-    categorias.forEach(categoria => {
-        const lista = document.getElementById(`lista-${categoria}`);
-        const grid = document.getElementById(`grid-${categoria}`);
-        
-        if (lista && grid) {
-            if (modoLista) {
-                lista.classList.remove('hidden');
-                grid.classList.add('hidden');
-            } else {
-                lista.classList.add('hidden');
-                grid.classList.remove('hidden');
-            }
-        }
-    });
-    
-    // Atualizar ícone e texto do botão
-    const iconLista = document.getElementById('icon-lista');
-    const iconGrid = document.getElementById('icon-grid');
-    const textoVisualizacao = document.getElementById('texto-visualizacao');
-    
-    if (modoLista) {
-        iconLista.classList.remove('hidden');
-        iconGrid.classList.add('hidden');
-        textoVisualizacao.textContent = 'Ver em Cards';
-    } else {
-        iconLista.classList.add('hidden');
-        iconGrid.classList.remove('hidden');
-        textoVisualizacao.textContent = 'Ver em Lista';
-    }
-}
 
 // Função para toggle de categoria individual
 function toggleCategoria(categoria) {
@@ -475,7 +349,10 @@ function recolherTodas() {
 
 // Função para imprimir
 function imprimirResultados() {
+    // Expandir todas antes de imprimir
     expandirTodas();
+    
+    // Aguardar animação e imprimir
     setTimeout(() => {
         window.print();
     }, 300);
@@ -488,15 +365,20 @@ function exportarJSON() {
         return;
     }
     
+    // Criar objeto JSON formatado
     const dataStr = JSON.stringify(resultadoCompleto, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    
+    // Criar link de download
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
     
+    // Nome do arquivo com timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
     link.download = `sorteio_vagas_${timestamp}.json`;
     
+    // Fazer download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -520,7 +402,11 @@ document.addEventListener('DOMContentLoaded', () => {
         display: none !important;
     }
     
-    nav, footer {
+    nav {
+        display: none !important;
+    }
+    
+    footer {
         display: none !important;
     }
     
@@ -562,21 +448,15 @@ document.addEventListener('DOMContentLoaded', () => {
         page-break-after: avoid;
     }
     
-    .space-y-3 > *, .grid > * {
+    .space-y-3 > * {
         page-break-inside: avoid;
     }
     
-    #categoria-pcd, #categoria-descobertas, #categoria-cobertas {
+    /* Mostrar todo o conteúdo na impressão */
+    #categoria-pcd,
+    #categoria-descobertas,
+    #categoria-cobertas {
         display: block !important;
-    }
-    
-    /* Mostrar apenas listas na impressão */
-    #lista-pcd, #lista-descobertas, #lista-cobertas {
-        display: block !important;
-    }
-    
-    #grid-pcd, #grid-descobertas, #grid-cobertas {
-        display: none !important;
     }
     
     @page {
